@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy and Add List Items with jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Source List</h2>
+    <ul id="sourceList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    
+    <h2>Add Item to Source List</h2>
+    <input type="text" id="newItemName" placeholder="Enter item name">
+    <button id="addItemBtn">Add Item</button>
+
+    <h2>Target List</h2>
+    <ul id="targetList">
+        <!-- Target list will be empty initially -->
+    </ul>
+
+    <script>
+        $(document).ready(function() {
+            // Event handler for copying items
+            $('#sourceList li').click(function() {
+                // Clone the clicked item and append it to the target list
+                $('#targetList').append($(this).clone());
+            });
+
+            // Event handler for adding new items to the source list
+            $('#addItemBtn').click(function() {
+                var newItemName = $('#newItemName').val();
+                if (newItemName.trim() !== '') {
+                    // Create a new list item and append it to the source list
+                    $('#sourceList').append('<li>' + newItemName + '</li>');
+                    // Clear the input field
+                    $('#newItemName').val('');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
